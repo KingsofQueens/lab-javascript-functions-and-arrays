@@ -20,11 +20,13 @@ const words = [
 
 function findLongestWord(arr) {
   let word = "";
-  for (i = 0; i < arr.length; i++) {
-    if (word.length < arr[i].length) {
-      word = arr[i];
-    } else if (arr.length === 0) {
-      return null;
+  if (arr.length === 0) {
+    return null;
+  } else {
+    for (i = 0; i < arr.length; i++) {
+      if (word.length < arr[i].length) {
+        word = arr[i];
+      }
     }
   }
   return word;
@@ -125,7 +127,18 @@ const wordsUnique = [
   "bring",
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(list) {
+  if (list.length === 0) {
+    return null;
+  }
+  let newArr = [];
+  for (let word of list) {
+    if (!newArr.includes(word)) {
+      newArr.push(word);
+    }
+  }
+  return newArr;
+}
 
 // Iteration #6: Find elements
 const wordsFind = [
@@ -140,11 +153,13 @@ const wordsFind = [
 ];
 
 function doesWordExist(arr, wordToCheck) {
+  if (arr.length === 0) {
+    return null;
+  }
+
   for (i = 0; i < arr.length; i++) {
     if (arr.includes(wordToCheck)) {
       return true;
-    } else if (arr.length === 0) {
-      return null;
     } else {
       return false;
     }
@@ -168,13 +183,9 @@ const wordsCount = [
 
 function howManyTimes(arr, wordToCheck) {
   let count = 0;
-  for (const value of arr) {
-    if (value !== String) {
-      return 0;
-    } else if (value === wordToCheck) {
+  for (let word of arr) {
+    if (word === wordToCheck) {
       count++;
-    } else {
-      return 1;
     }
   }
   return count;
